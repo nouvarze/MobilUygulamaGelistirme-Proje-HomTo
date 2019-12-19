@@ -1,43 +1,40 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import {f,auth,database} from './config'
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
+import HomeScreen from './screens/HomeScreen';
+import LoginScreen from './screens/LoginScreen';
 
-export default class App extends React.Component{
-
-  constructor(props){
-    super(props);
-    //this.registerUser("lefeyk@gmail.com","123456");
-    f.auth().onAuthStateChanged(function (user){
-      if(user){
-        console.log("User Mail: "+user.email+"\nUsername: "+user.displayName);
-      }
-      else{
-        
-      }
-    })
+const App = createStackNavigator(
+  {
+  LoginScreen:{screen:LoginScreen},
+  HomeScreen: {screen:HomeScreen}
+},
+{
+  initialRouteName:'LoginScreen',
+  defaultNavigationOptions:{
+    title:'App'
   }
-
-registerUser=(email,password)=>{
-  console.log(email,password);
-  f.auth().createUserWithEmailAndPassword(email,password)
-  .then((userObj)=>console.log(email,password,userObj))
-  .catch((error)=>console.log("error logging in",error));
 }
+);
 
-render(){
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
-}
-}
+export default createAppContainer(App);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  // navigateToScreen(){
+  //   const {navigate} = this.props.navigation.navigate;
+  //   //this.registerUser("lefeyk@gmail.com","123456");
+  //   f.auth().onAuthStateChanged(function (user){
+  //     if(user){
+  //       navigate(HomeScreen,);
+  //     }
+  //     else{
+  //       navigate('LoginScreen');
+  //     }
+  //   })
+
+  // registerUser=(email,password)=>{
+  //   console.log(email,password);
+  //   f.auth().createUserWithEmailAndPassword(email,password)
+  //   .then((userObj)=>console.log(email,password,userObj))
+  //   .catch((error)=>console.log("error logging in",error));
+  // }
