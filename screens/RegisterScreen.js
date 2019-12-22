@@ -24,10 +24,11 @@ class RegisterScreen extends React.Component {
 
       db.collection("users").doc(f.auth().currentUser.uid).set({
           adSoyad: this.state.adSoyad,
-          email: this.state.emailValue        
+          email: this.state.emailValue,
+          ev: 'ebshtlrLto9T1YBGzmLu',
       });
 
-      this.props.navigation.navigate('HomeScreen');
+      this.props.navigation.replace('HomeScreen');
     }
 
     registerButton=(email,password)=>{
@@ -50,7 +51,7 @@ class RegisterScreen extends React.Component {
     render() {
 
       return (
-        <View>
+        <View style={{alignItems:"center", backgroundColor:'#777',flex:1}}>
             <TextInput
             style={styles.InputStyle}
               placeholder="Ad Soyad"
@@ -72,6 +73,7 @@ class RegisterScreen extends React.Component {
               secureTextEntry={true}
             />
             <TouchableOpacity
+            style={styles.ButtonStyle}
               onPress={()=>this.registerButton(this.state.emailValue,this.state.password)}
             ><Text>Üye Ol</Text></TouchableOpacity>
         </View>
@@ -82,12 +84,24 @@ class RegisterScreen extends React.Component {
   const styles=StyleSheet.create({
     InputStyle:{
       width:'80%',
-      height:40,
-      borderRadius: 2,
+      height:45,
+      margin:15,
+      borderRadius: 15,
       borderWidth: 2,
-      borderColor: 'gray',
+      borderColor: '#BBB',
+      color:'white',
       paddingHorizontal:10,
       alignSelf: "center"
+    },
+    ButtonStyle:{
+      width:240,
+      alignItems:'center',
+      justifyContent:'center',
+      padding:10,
+      margin:5,
+      borderRadius:8,
+      backgroundColor:'#4477FF',
+      color:'white'
     }
   })
 

@@ -128,9 +128,7 @@ class HomeScreen extends React.Component {
             elevation: 20
           }}
           onPress={() => {
-            this.props.navigation.navigate("AddHarcama", {
-              onBack: () => this.renderPage()
-            });
+            this.props.navigation.replace("AddHarcama");
           }}
         >
           <Text style={{ fontSize: 36, color: "#fff", alignSelf: "center" }}>

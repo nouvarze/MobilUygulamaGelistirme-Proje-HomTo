@@ -4,7 +4,6 @@ import {f,auth,database} from '../config';
 import HomeScreen from './HomeScreen';
 import App from '../App'
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
-import getHarcama from '../api/HarcamaApi';
 
 
 export default class LoginScreen extends Component {
@@ -13,29 +12,13 @@ export default class LoginScreen extends Component {
     password:''
   }
 
-
-    componentDidMount(){
-    //this.registerUser("lefeyk@gmail.com","123456");
-    // f.auth().onAuthStateChanged(function (user){
-    //   if(user){
-    //       console.log("if User");
-          
-    //   }
-    //   else{
-    //       console.log("if else");
-    //   }
-    // });
-    // f.auth().signOut();
-    // console.log("Logged out ");
-    
-    }
     loginButton=(email,password)=>{
       f.auth().signInWithEmailAndPassword(email,password)
       .then(()=>{ 
         console.log('Logged in successfully');
-        
+
         console.log(f.auth().currentUser.uid);
-        this.props.navigation.navigate('HomeScreen');
+        this.props.navigation.replace('HomeScreen');
 
         })
       .catch(function(error){
